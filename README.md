@@ -1,3 +1,3 @@
-# js-stellar-base for Bower
+# js-fonero-base for Bower
 
-Packaged version of [js-stellar-base](https://github.com/stellar/js-stellar-base) for front-end development.
+Packaged version of [js-fonero-base](https://github.com/fonero-project/js-fonero-base) for front-end development.

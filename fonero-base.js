@@ -1,4 +1,4 @@
-var StellarBase =
+var FoneroBase =
 /******/ (function(modules) { // webpackBootstrap
 /******/ 	// The module cache
 /******/ 	var installedModules = {};
@@ -65,11 +65,11 @@ var StellarBase =
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
 
-	var _generatedStellarXdr_generated = __webpack_require__(2);
+	var _generatedFoneroXdr_generated = __webpack_require__(2);
 
-	var _generatedStellarXdr_generated2 = _interopRequireDefault(_generatedStellarXdr_generated);
+	var _generatedFoneroXdr_generated2 = _interopRequireDefault(_generatedFoneroXdr_generated);
 
-	exports.xdr = _generatedStellarXdr_generated2["default"];
+	exports.xdr = _generatedFoneroXdr_generated2["default"];
 
 	var _hashing = __webpack_require__(207);
 
@@ -878,9 +878,9 @@ var StellarBase =
 	//       }
 	//
 	// ===========================================================================
-	xdr.union("StellarValueExt",{switchOn:xdr.int(),switchName:"v",switches:[[0,xdr["void"]()]],arms:{}}); // === xdr source ============================================================
+	xdr.union("FoneroValueExt",{switchOn:xdr.int(),switchName:"v",switches:[[0,xdr["void"]()]],arms:{}}); // === xdr source ============================================================
 	//
-	//   struct StellarValue
+	//   struct FoneroValue
 	//   {
 	//       Hash txSetHash;   // transaction set to apply to previous ledger
 	//       uint64 closeTime; // network close time
@@ -902,7 +902,7 @@ var StellarBase =
 	//   };
 	//
 	// ===========================================================================
-	xdr.struct("StellarValue",[["txSetHash",xdr.lookup("Hash")],["closeTime",xdr.lookup("Uint64")],["upgrades",xdr.varArray(xdr.lookup("UpgradeType"),6)],["ext",xdr.lookup("StellarValueExt")]]); // === xdr source ============================================================
+	xdr.struct("FoneroValue",[["txSetHash",xdr.lookup("Hash")],["closeTime",xdr.lookup("Uint64")],["upgrades",xdr.varArray(xdr.lookup("UpgradeType"),6)],["ext",xdr.lookup("FoneroValueExt")]]); // === xdr source ============================================================
 	//
 	//   union switch (int v)
 	//       {
@@ -917,14 +917,14 @@ var StellarBase =
 	//   {
 	//       uint32 ledgerVersion;    // the protocol version of the ledger
 	//       Hash previousLedgerHash; // hash of the previous ledger header
-	//       StellarValue scpValue;   // what consensus agreed to
+	//       FoneroValue scpValue;   // what consensus agreed to
 	//       Hash txSetResultHash;    // the TransactionResultSet that led to this ledger
 	//       Hash bucketListHash;     // hash of the ledger state
 	//   
 	//       uint32 ledgerSeq; // sequence number of this ledger
 	//   
 	//       int64 totalCoins; // total number of stroops in existence.
-	//                         // 10,000,000 stroops in 1 XLM
+	//                         // 10,000,000 stroops in 1 FNO
 	//   
 	//       int64 feePool;       // fees burned since last inflation run
 	//       uint32 inflationSeq; // inflation sequence number
@@ -952,7 +952,7 @@ var StellarBase =
 	//   };
 	//
 	// ===========================================================================
-	xdr.struct("LedgerHeader",[["ledgerVersion",xdr.lookup("Uint32")],["previousLedgerHash",xdr.lookup("Hash")],["scpValue",xdr.lookup("StellarValue")],["txSetResultHash",xdr.lookup("Hash")],["bucketListHash",xdr.lookup("Hash")],["ledgerSeq",xdr.lookup("Uint32")],["totalCoins",xdr.lookup("Int64")],["feePool",xdr.lookup("Int64")],["inflationSeq",xdr.lookup("Uint32")],["idPool",xdr.lookup("Uint64")],["baseFee",xdr.lookup("Uint32")],["baseReserve",xdr.lookup("Uint32")],["maxTxSetSize",xdr.lookup("Uint32")],["skipList",xdr.array(xdr.lookup("Hash"),4)],["ext",xdr.lookup("LedgerHeaderExt")]]); // === xdr source ============================================================
+	xdr.struct("LedgerHeader",[["ledgerVersion",xdr.lookup("Uint32")],["previousLedgerHash",xdr.lookup("Hash")],["scpValue",xdr.lookup("FoneroValue")],["txSetResultHash",xdr.lookup("Hash")],["bucketListHash",xdr.lookup("Hash")],["ledgerSeq",xdr.lookup("Uint32")],["totalCoins",xdr.lookup("Int64")],["feePool",xdr.lookup("Int64")],["inflationSeq",xdr.lookup("Uint32")],["idPool",xdr.lookup("Uint64")],["baseFee",xdr.lookup("Uint32")],["baseReserve",xdr.lookup("Uint32")],["maxTxSetSize",xdr.lookup("Uint32")],["skipList",xdr.array(xdr.lookup("Hash"),4)],["ext",xdr.lookup("LedgerHeaderExt")]]); // === xdr source ============================================================
 	//
 	//   enum LedgerUpgradeType
 	//   {
@@ -1389,7 +1389,7 @@ var StellarBase =
 	// ===========================================================================
 	xdr.struct("DontHave",[["type",xdr.lookup("MessageType")],["reqHash",xdr.lookup("Uint256")]]); // === xdr source ============================================================
 	//
-	//   union StellarMessage switch (MessageType type)
+	//   union FoneroMessage switch (MessageType type)
 	//   {
 	//   case ERROR_MSG:
 	//       Error error;
@@ -1418,23 +1418,23 @@ var StellarBase =
 	//   case SCP_QUORUMSET:
 	//       SCPQuorumSet qSet;
 	//   case SCP_MESSAGE:
-	//       StellarMessage envelope;
+	//       FoneroMessage envelope;
 	//   case GET_SCP_STATE:
 	//       uint32 getSCPLedgerSeq; // ledger seq requested ; if 0, requests the latest
 	//   };
 	//
 	// ===========================================================================
-	xdr.union("StellarMessage",{switchOn:xdr.lookup("MessageType"),switchName:"type",switches:[["errorMsg","error"],["hello","hello"],["auth","auth"],["dontHave","dontHave"],["getPeer",xdr["void"]()],["peer","peers"],["getTxSet","txSetHash"],["txSet","txSet"],["transaction","transaction"],["getScpQuorumset","qSetHash"],["scpQuorumset","qSet"],["scpMessage","envelope"],["getScpState","getScpLedgerSeq"]],arms:{error:xdr.lookup("Error"),hello:xdr.lookup("Hello"),auth:xdr.lookup("Auth"),dontHave:xdr.lookup("DontHave"),peers:xdr.varArray(xdr.lookup("PeerAddress"),100),txSetHash:xdr.lookup("Uint256"),txSet:xdr.lookup("TransactionSet"),transaction:xdr.lookup("TransactionEnvelope"),qSetHash:xdr.lookup("Uint256"),qSet:xdr.lookup("ScpQuorumSet"),envelope:xdr.lookup("StellarMessage"),getScpLedgerSeq:xdr.lookup("Uint32")}}); // === xdr source ============================================================
+	xdr.union("FoneroMessage",{switchOn:xdr.lookup("MessageType"),switchName:"type",switches:[["errorMsg","error"],["hello","hello"],["auth","auth"],["dontHave","dontHave"],["getPeer",xdr["void"]()],["peer","peers"],["getTxSet","txSetHash"],["txSet","txSet"],["transaction","transaction"],["getScpQuorumset","qSetHash"],["scpQuorumset","qSet"],["scpMessage","envelope"],["getScpState","getScpLedgerSeq"]],arms:{error:xdr.lookup("Error"),hello:xdr.lookup("Hello"),auth:xdr.lookup("Auth"),dontHave:xdr.lookup("DontHave"),peers:xdr.varArray(xdr.lookup("PeerAddress"),100),txSetHash:xdr.lookup("Uint256"),txSet:xdr.lookup("TransactionSet"),transaction:xdr.lookup("TransactionEnvelope"),qSetHash:xdr.lookup("Uint256"),qSet:xdr.lookup("ScpQuorumSet"),envelope:xdr.lookup("FoneroMessage"),getScpLedgerSeq:xdr.lookup("Uint32")}}); // === xdr source ============================================================
 	//
 	//   struct
 	//   {
 	//      uint64 sequence;
-	//      StellarMessage message;
+	//      FoneroMessage message;
 	//      HmacSha256Mac mac;
 	//       }
 	//
 	// ===========================================================================
-	xdr.struct("AuthenticatedMessageV0",[["sequence",xdr.lookup("Uint64")],["message",xdr.lookup("StellarMessage")],["mac",xdr.lookup("HmacSha256Mac")]]); // === xdr source ============================================================
+	xdr.struct("AuthenticatedMessageV0",[["sequence",xdr.lookup("Uint64")],["message",xdr.lookup("FoneroMessage")],["mac",xdr.lookup("HmacSha256Mac")]]); // === xdr source ============================================================
 	//
 	//   union AuthenticatedMessage switch (uint32 v)
 	//   {
@@ -1442,7 +1442,7 @@ var StellarBase =
 	//       struct
 	//   {
 	//      uint64 sequence;
-	//      StellarMessage message;
+	//      FoneroMessage message;
 	//      HmacSha256Mac mac;
 	//       } v0;
 	//   };
@@ -15377,7 +15377,7 @@ var StellarBase =
 /* 217 */
 /***/ (function(module, exports, __webpack_require__) {
 
-	/* WEBPACK VAR INJECTION */(function(Buffer) {//  This module provides the signing functionality used by the stellar network
+	/* WEBPACK VAR INJECTION */(function(Buffer) {//  This module provides the signing functionality used by the fonero network
 	//  The code below may look a little strange... this is because we try to provide
 	//  the most efficient signing method possible.  First, we try to load the
 	//  native ed25519 package for node.js environments, and if that fails we
@@ -17884,9 +17884,9 @@ var StellarBase =
 
 	var _strkey = __webpack_require__(225);
 
-	var _generatedStellarXdr_generated = __webpack_require__(2);
+	var _generatedFoneroXdr_generated = __webpack_require__(2);
 
-	var _generatedStellarXdr_generated2 = _interopRequireDefault(_generatedStellarXdr_generated);
+	var _generatedFoneroXdr_generated2 = _interopRequireDefault(_generatedFoneroXdr_generated);
 
 	var _tweetnacl = __webpack_require__(218);
 
@@ -17956,12 +17956,12 @@ var StellarBase =
 	  _createClass(Keypair, [{
 	    key: "xdrAccountId",
 	    value: function xdrAccountId() {
-	      return new _generatedStellarXdr_generated2["default"].AccountId.publicKeyTypeEd25519(this._publicKey);
+	      return new _generatedFoneroXdr_generated2["default"].AccountId.publicKeyTypeEd25519(this._publicKey);
 	    }
 	  }, {
 	    key: "xdrPublicKey",
 	    value: function xdrPublicKey() {
-	      return new _generatedStellarXdr_generated2["default"].PublicKey.publicKeyTypeEd25519(this._publicKey);
+	      return new _generatedFoneroXdr_generated2["default"].PublicKey.publicKeyTypeEd25519(this._publicKey);
 	    }
 
 	    /**
@@ -18061,7 +18061,7 @@ var StellarBase =
 	      var signature = this.sign(data);
 	      var hint = this.signatureHint();
 
-	      return new _generatedStellarXdr_generated2["default"].DecoratedSignature({ hint: hint, signature: signature });
+	      return new _generatedFoneroXdr_generated2["default"].DecoratedSignature({ hint: hint, signature: signature });
 	    }
 	  }], [{
 	    key: "fromSecret",
@@ -18118,7 +18118,7 @@ var StellarBase =
 	    value: function fromPublicKey(publicKey) {
 	      publicKey = _strkey.StrKey.decodeEd25519PublicKey(publicKey);
 	      if (publicKey.length !== 32) {
-	        throw new Error('Invalid Stellar public key');
+	        throw new Error('Invalid Fonero public key');
 	      }
 	      return new this({ type: 'ed25519', publicKey: publicKey });
 	    }
@@ -18159,12 +18159,12 @@ var StellarBase =
 
 	/**
 	 * Contains passphrases for common networks:
-	 * * `Networks.PUBLIC`: `Public Global Stellar Network ; September 2015`
+	 * * `Networks.PUBLIC`: `Public Global Fonero Network ; September 2015`
 	 * * `Networks.TESTNET`: `Test SDF Network ; September 2015`
 	 * @type {{PUBLIC: string, TESTNET: string}}
 	 */
 	var Networks = {
-		PUBLIC: "Public Global Stellar Network ; September 2015",
+		PUBLIC: "Public Global Fonero Network ; September 2015",
 		TESTNET: "Test SDF Network ; September 2015"
 	};
 
@@ -18173,7 +18173,7 @@ var StellarBase =
 
 	/**
 	 * The Network class provides helper methods to get the passphrase or id for different
-	 * stellar networks.  It also provides the {@link Network.current} class method that returns the network
+	 * fonero networks.  It also provides the {@link Network.current} class method that returns the network
 	 * that will be used by this process for the purposes of generating signatures.
 	 *
 	 * You should select network your app will use before adding the first signature. You can use the `use`,
@@ -18192,7 +18192,7 @@ var StellarBase =
 		}
 
 		/**
-	  * Use Stellar Public Network
+	  * Use Fonero Public Network
 	  */
 
 		_createClass(Network, [{
@@ -18493,7 +18493,7 @@ var StellarBase =
 	    }
 
 	    /**
-	     * Returns true if the given Stellar public key is a valid ed25519 public key.
+	     * Returns true if the given Fonero public key is a valid ed25519 public key.
 	     * @param {string} publicKey public key to check
 	     * @returns {boolean}
 	     */
@@ -18526,7 +18526,7 @@ var StellarBase =
 	    }
 
 	    /**
-	     * Returns true if the given Stellar secret key is a valid ed25519 secret seed.
+	     * Returns true if the given Fonero secret key is a valid ed25519 secret seed.
 	     * @param {string} seed seed to check
 	     * @returns {boolean}
 	     */
@@ -19590,7 +19590,7 @@ var StellarBase =
 	    /**
 	     * Returns the "signature base" of this transaction, which is the value
 	     * that, when hashed, should be signed to create a signature that
-	     * validators on the Stellar Network will accept.
+	     * validators on the Fonero Network will accept.
 	     *
 	     * It is composed of a 4 prefix bytes followed by the xdr-encoded form
 	     * of this transaction.
@@ -19653,9 +19653,9 @@ var StellarBase =
 
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
-	var _generatedStellarXdr_generated = __webpack_require__(2);
+	var _generatedFoneroXdr_generated = __webpack_require__(2);
 
-	var _generatedStellarXdr_generated2 = _interopRequireDefault(_generatedStellarXdr_generated);
+	var _generatedFoneroXdr_generated2 = _interopRequireDefault(_generatedFoneroXdr_generated);
 
 	var _keypair = __webpack_require__(220);
 
@@ -19704,7 +19704,7 @@ var StellarBase =
 	 * When set using `{@link Operation.setOptions}` option, requires the issuing account to
 	 * give other accounts permission before they can hold the issuing account’s credit.
 	 * @constant
-	 * @see [Account flags](https://www.stellar.org/developers/guides/concepts/accounts.html#flags)
+	 * @see [Account flags](https://www.fonero.org/developers/guides/concepts/accounts.html#flags)
 	 */
 	var AuthRequiredFlag = 1 << 0;
 	exports.AuthRequiredFlag = AuthRequiredFlag;
@@ -19712,7 +19712,7 @@ var StellarBase =
 	 * When set using `{@link Operation.setOptions}` option, allows the issuing account to
 	 * revoke its credit held by other accounts.
 	 * @constant
-	 * @see [Account flags](https://www.stellar.org/developers/guides/concepts/accounts.html#flags)
+	 * @see [Account flags](https://www.fonero.org/developers/guides/concepts/accounts.html#flags)
 	 */
 	var AuthRevocableFlag = 1 << 1;
 	exports.AuthRevocableFlag = AuthRevocableFlag;
@@ -19720,13 +19720,13 @@ var StellarBase =
 	 * When set using `{@link Operation.setOptions}` option, then none of the authorization flags
 	 * can be set and the account can never be deleted.
 	 * @constant
-	 * @see [Account flags](https://www.stellar.org/developers/guides/concepts/accounts.html#flags)
+	 * @see [Account flags](https://www.fonero.org/developers/guides/concepts/accounts.html#flags)
 	 */
 	var AuthImmutableFlag = 1 << 2;
 
 	exports.AuthImmutableFlag = AuthImmutableFlag;
 	/**
-	 * `Operation` class represents [operations](https://www.stellar.org/developers/learn/concepts/operations.html) in Stellar network.
+	 * `Operation` class represents [operations](https://www.fonero.org/developers/learn/concepts/operations.html) in Fonero network.
 	 * Use one of static methods to create operations:
 	 * * `{@link Operation.createAccount}`
 	 * * `{@link Operation.payment}`
@@ -19830,7 +19830,7 @@ var StellarBase =
 	          result.lowThreshold = attrs.lowThreshold();
 	          result.medThreshold = attrs.medThreshold();
 	          result.highThreshold = attrs.highThreshold();
-	          // home_domain is checked by iscntrl in stellar-core
+	          // home_domain is checked by iscntrl in fonero-core
 	          result.homeDomain = attrs.homeDomain() ? attrs.homeDomain().toString('ascii') : null;
 
 	          if (attrs.signer()) {
@@ -19869,7 +19869,7 @@ var StellarBase =
 	          break;
 	        case "manageDatum":
 	          result.type = "manageData";
-	          // manage_data.name is checked by iscntrl in stellar-core
+	          // manage_data.name is checked by iscntrl in fonero-core
 	          result.name = attrs.dataName().toString('ascii');
 	          result.value = attrs.dataValue();
 	          break;
@@ -19996,11 +19996,11 @@ var StellarBase =
 	    value: function _toXDRPrice(price) {
 	      var xdrObject = undefined;
 	      if (price.n && price.d) {
-	        xdrObject = new _generatedStellarXdr_generated2["default"].Price(price);
+	        xdrObject = new _generatedFoneroXdr_generated2["default"].Price(price);
 	      } else {
 	        price = new _bignumberJs2["default"](price);
 	        var approx = (0, _utilContinued_fraction.best_r)(price);
-	        xdrObject = new _generatedStellarXdr_generated2["default"].Price({
+	        xdrObject = new _generatedFoneroXdr_generated2["default"].Price({
 	          n: parseInt(approx[0]),
 	          d: parseInt(approx[1])
 	        });
@@ -20047,9 +20047,9 @@ var StellarBase =
 
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
-	var _generatedStellarXdr_generated = __webpack_require__(2);
+	var _generatedFoneroXdr_generated = __webpack_require__(2);
 
-	var _generatedStellarXdr_generated2 = _interopRequireDefault(_generatedStellarXdr_generated);
+	var _generatedFoneroXdr_generated2 = _interopRequireDefault(_generatedFoneroXdr_generated);
 
 	var _keypair = __webpack_require__(220);
 
@@ -20068,11 +20068,11 @@ var StellarBase =
 	var _lodashTrimEnd2 = _interopRequireDefault(_lodashTrimEnd);
 
 	/**
-	 * Asset class represents an asset, either the native asset (`XLM`)
+	 * Asset class represents an asset, either the native asset (`FNO`)
 	 * or an asset code / issuer account ID pair.
 	 *
 	 * An asset code describes an asset code and issuer pair. In the case of the native
-	 * asset XLM, the issuer will be null.
+	 * asset FNO, the issuer will be null.
 	 *
 	 * @constructor
 	 * @param {string} code - The asset code.
@@ -20086,7 +20086,7 @@ var StellarBase =
 	    if (!/^[a-zA-Z0-9]{1,12}$/.test(code)) {
 	      throw new Error("Asset code is invalid (maximum alphanumeric, 12 characters at max)");
 	    }
-	    if (String(code).toLowerCase() !== "xlm" && !issuer) {
+	    if (String(code).toLowerCase() !== "fno" && !issuer) {
 	      throw new Error("Issuer cannot be null");
 	    }
 	    if (issuer && !_strkey.StrKey.isValidEd25519PublicKey(issuer)) {
@@ -20111,16 +20111,16 @@ var StellarBase =
 	     */
 	    value: function toXDRObject() {
 	      if (this.isNative()) {
-	        return _generatedStellarXdr_generated2["default"].Asset.assetTypeNative();
+	        return _generatedFoneroXdr_generated2["default"].Asset.assetTypeNative();
 	      }
 
 	      var xdrType = undefined,
 	          xdrTypeString = undefined;
 	      if (this.code.length <= 4) {
-	        xdrType = _generatedStellarXdr_generated2["default"].AssetAlphaNum4;
+	        xdrType = _generatedFoneroXdr_generated2["default"].AssetAlphaNum4;
 	        xdrTypeString = 'assetTypeCreditAlphanum4';
 	      } else {
-	        xdrType = _generatedStellarXdr_generated2["default"].AssetAlphaNum12;
+	        xdrType = _generatedFoneroXdr_generated2["default"].AssetAlphaNum12;
 	        xdrTypeString = 'assetTypeCreditAlphanum12';
 	      }
 
@@ -20133,7 +20133,7 @@ var StellarBase =
 	        issuer: _keypair.Keypair.fromPublicKey(this.issuer).xdrAccountId()
 	      });
 
-	      return new _generatedStellarXdr_generated2["default"].Asset(xdrTypeString, assetType);
+	      return new _generatedFoneroXdr_generated2["default"].Asset(xdrTypeString, assetType);
 	    }
 
 	    /**
@@ -20163,7 +20163,7 @@ var StellarBase =
 	     * * `credit_alphanum4`
 	     * * `credit_alphanum12`
 	     *
-	     * @see [Assets concept](https://www.stellar.org/developers/learn/concepts/assets.html)
+	     * @see [Assets concept](https://www.fonero.org/developers/learn/concepts/assets.html)
 	     * @returns {string}
 	     */
 	  }, {
@@ -20203,7 +20203,7 @@ var StellarBase =
 	  }], [{
 	    key: "native",
 	    value: function native() {
-	      return new Asset("XLM");
+	      return new Asset("FNO");
 	    }
 
 	    /**
@@ -20218,12 +20218,12 @@ var StellarBase =
 	          code = undefined,
 	          issuer = undefined;
 	      switch (assetXdr["switch"]()) {
-	        case _generatedStellarXdr_generated2["default"].AssetType.assetTypeNative():
+	        case _generatedFoneroXdr_generated2["default"].AssetType.assetTypeNative():
 	          return this.native();
-	        case _generatedStellarXdr_generated2["default"].AssetType.assetTypeCreditAlphanum4():
+	        case _generatedFoneroXdr_generated2["default"].AssetType.assetTypeCreditAlphanum4():
 	          anum = assetXdr.alphaNum4();
 	        /* falls through */
-	        case _generatedStellarXdr_generated2["default"].AssetType.assetTypeCreditAlphanum12():
+	        case _generatedFoneroXdr_generated2["default"].AssetType.assetTypeCreditAlphanum12():
 	          anum = anum || assetXdr.alphaNum12();
 	          issuer = _strkey.StrKey.encodeEd25519PublicKey(anum.issuer().ed25519());
 	          code = (0, _lodashTrimEnd2["default"])(anum.assetCode(), '\0');
@@ -24626,9 +24626,9 @@ var StellarBase =
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
 
-	var _generatedStellarXdr_generated = __webpack_require__(2);
+	var _generatedFoneroXdr_generated = __webpack_require__(2);
 
-	var _generatedStellarXdr_generated2 = _interopRequireDefault(_generatedStellarXdr_generated);
+	var _generatedFoneroXdr_generated2 = _interopRequireDefault(_generatedFoneroXdr_generated);
 
 	var _keypair = __webpack_require__(220);
 
@@ -24648,10 +24648,10 @@ var StellarBase =
 	  if (!_strkey.StrKey.isValidEd25519PublicKey(opts.destination)) {
 	    throw new Error("destination is invalid");
 	  }
-	  opAttributes.body = _generatedStellarXdr_generated2["default"].OperationBody.accountMerge(_keypair.Keypair.fromPublicKey(opts.destination).xdrAccountId());
+	  opAttributes.body = _generatedFoneroXdr_generated2["default"].OperationBody.accountMerge(_keypair.Keypair.fromPublicKey(opts.destination).xdrAccountId());
 	  this.setSourceAccount(opAttributes, opts);
 
-	  return new _generatedStellarXdr_generated2["default"].Operation(opAttributes);
+	  return new _generatedFoneroXdr_generated2["default"].Operation(opAttributes);
 	};
 	exports.accountMerge = accountMerge;
 
@@ -24667,9 +24667,9 @@ var StellarBase =
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
 
-	var _generatedStellarXdr_generated = __webpack_require__(2);
+	var _generatedFoneroXdr_generated = __webpack_require__(2);
 
-	var _generatedStellarXdr_generated2 = _interopRequireDefault(_generatedStellarXdr_generated);
+	var _generatedFoneroXdr_generated2 = _interopRequireDefault(_generatedFoneroXdr_generated);
 
 	var _keypair = __webpack_require__(220);
 
@@ -24699,21 +24699,21 @@ var StellarBase =
 	  attributes.trustor = _keypair.Keypair.fromPublicKey(opts.trustor).xdrAccountId();
 	  if (opts.assetCode.length <= 4) {
 	    var code = (0, _lodashPadEnd2["default"])(opts.assetCode, 4, '\0');
-	    attributes.asset = _generatedStellarXdr_generated2["default"].AllowTrustOpAsset.assetTypeCreditAlphanum4(code);
+	    attributes.asset = _generatedFoneroXdr_generated2["default"].AllowTrustOpAsset.assetTypeCreditAlphanum4(code);
 	  } else if (opts.assetCode.length <= 12) {
 	    var code = (0, _lodashPadEnd2["default"])(opts.assetCode, 12, '\0');
-	    attributes.asset = _generatedStellarXdr_generated2["default"].AllowTrustOpAsset.assetTypeCreditAlphanum12(code);
+	    attributes.asset = _generatedFoneroXdr_generated2["default"].AllowTrustOpAsset.assetTypeCreditAlphanum12(code);
 	  } else {
 	    throw new Error("Asset code must be 12 characters at max.");
 	  }
 	  attributes.authorize = opts.authorize;
-	  var allowTrustOp = new _generatedStellarXdr_generated2["default"].AllowTrustOp(attributes);
+	  var allowTrustOp = new _generatedFoneroXdr_generated2["default"].AllowTrustOp(attributes);
 
 	  var opAttributes = {};
-	  opAttributes.body = _generatedStellarXdr_generated2["default"].OperationBody.allowTrust(allowTrustOp);
+	  opAttributes.body = _generatedFoneroXdr_generated2["default"].OperationBody.allowTrust(allowTrustOp);
 	  this.setSourceAccount(opAttributes, opts);
 
-	  return new _generatedStellarXdr_generated2["default"].Operation(opAttributes);
+	  return new _generatedFoneroXdr_generated2["default"].Operation(opAttributes);
 	};
 	exports.allowTrust = allowTrust;
 
@@ -24729,9 +24729,9 @@ var StellarBase =
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
 
-	var _generatedStellarXdr_generated = __webpack_require__(2);
+	var _generatedFoneroXdr_generated = __webpack_require__(2);
 
-	var _generatedStellarXdr_generated2 = _interopRequireDefault(_generatedStellarXdr_generated);
+	var _generatedFoneroXdr_generated2 = _interopRequireDefault(_generatedFoneroXdr_generated);
 
 	var _jsXdr = __webpack_require__(3);
 
@@ -24767,13 +24767,13 @@ var StellarBase =
 
 	  attributes.bumpTo = _jsXdr.Hyper.fromString(opts.bumpTo);
 
-	  var bumpSequenceOp = new _generatedStellarXdr_generated2["default"].BumpSequenceOp(attributes);
+	  var bumpSequenceOp = new _generatedFoneroXdr_generated2["default"].BumpSequenceOp(attributes);
 
 	  var opAttributes = {};
-	  opAttributes.body = _generatedStellarXdr_generated2["default"].OperationBody.bumpSequence(bumpSequenceOp);
+	  opAttributes.body = _generatedFoneroXdr_generated2["default"].OperationBody.bumpSequence(bumpSequenceOp);
 	  this.setSourceAccount(opAttributes, opts);
 
-	  return new _generatedStellarXdr_generated2["default"].Operation(opAttributes);
+	  return new _generatedFoneroXdr_generated2["default"].Operation(opAttributes);
 	};
 	exports.bumpSequence = bumpSequence;
 
@@ -24789,9 +24789,9 @@ var StellarBase =
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
 
-	var _generatedStellarXdr_generated = __webpack_require__(2);
+	var _generatedFoneroXdr_generated = __webpack_require__(2);
 
-	var _generatedStellarXdr_generated2 = _interopRequireDefault(_generatedStellarXdr_generated);
+	var _generatedFoneroXdr_generated2 = _interopRequireDefault(_generatedFoneroXdr_generated);
 
 	var _keypair = __webpack_require__(220);
 
@@ -24836,13 +24836,13 @@ var StellarBase =
 	  if (opts.source) {
 	    attributes.source = opts.source.masterKeypair;
 	  }
-	  var changeTrustOP = new _generatedStellarXdr_generated2["default"].ChangeTrustOp(attributes);
+	  var changeTrustOP = new _generatedFoneroXdr_generated2["default"].ChangeTrustOp(attributes);
 
 	  var opAttributes = {};
-	  opAttributes.body = _generatedStellarXdr_generated2["default"].OperationBody.changeTrust(changeTrustOP);
+	  opAttributes.body = _generatedFoneroXdr_generated2["default"].OperationBody.changeTrust(changeTrustOP);
 	  this.setSourceAccount(opAttributes, opts);
 
-	  return new _generatedStellarXdr_generated2["default"].Operation(opAttributes);
+	  return new _generatedFoneroXdr_generated2["default"].Operation(opAttributes);
 	};
 	exports.changeTrust = changeTrust;
 
@@ -24858,9 +24858,9 @@ var StellarBase =
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
 
-	var _generatedStellarXdr_generated = __webpack_require__(2);
+	var _generatedFoneroXdr_generated = __webpack_require__(2);
 
-	var _generatedStellarXdr_generated2 = _interopRequireDefault(_generatedStellarXdr_generated);
+	var _generatedFoneroXdr_generated2 = _interopRequireDefault(_generatedFoneroXdr_generated);
 
 	var _keypair = __webpack_require__(220);
 
@@ -24872,8 +24872,8 @@ var StellarBase =
 	 * @alias Operation.createAccount
 	 * @param {object} opts
 	 * @param {string} opts.destination - Destination account ID to create an account for.
-	 * @param {string} opts.startingBalance - Amount in XLM the account should be funded for. Must be greater
-	 *                                   than the [reserve balance amount](https://www.stellar.org/developers/learn/concepts/fees.html).
+	 * @param {string} opts.startingBalance - Amount in FNO the account should be funded for. Must be greater
+	 *                                   than the [reserve balance amount](https://www.fonero.org/developers/learn/concepts/fees.html).
 	 * @param {string} [opts.source] - The source account for the payment. Defaults to the transaction's source account.
 	 * @returns {xdr.CreateAccountOp}
 	 */
@@ -24887,13 +24887,13 @@ var StellarBase =
 	  var attributes = {};
 	  attributes.destination = _keypair.Keypair.fromPublicKey(opts.destination).xdrAccountId();
 	  attributes.startingBalance = this._toXDRAmount(opts.startingBalance);
-	  var createAccount = new _generatedStellarXdr_generated2["default"].CreateAccountOp(attributes);
+	  var createAccount = new _generatedFoneroXdr_generated2["default"].CreateAccountOp(attributes);
 
 	  var opAttributes = {};
-	  opAttributes.body = _generatedStellarXdr_generated2["default"].OperationBody.createAccount(createAccount);
+	  opAttributes.body = _generatedFoneroXdr_generated2["default"].OperationBody.createAccount(createAccount);
 	  this.setSourceAccount(opAttributes, opts);
 
-	  return new _generatedStellarXdr_generated2["default"].Operation(opAttributes);
+	  return new _generatedFoneroXdr_generated2["default"].Operation(opAttributes);
 	};
 	exports.createAccount = createAccount;
 
@@ -24909,9 +24909,9 @@ var StellarBase =
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
 
-	var _generatedStellarXdr_generated = __webpack_require__(2);
+	var _generatedFoneroXdr_generated = __webpack_require__(2);
 
-	var _generatedStellarXdr_generated2 = _interopRequireDefault(_generatedStellarXdr_generated);
+	var _generatedFoneroXdr_generated2 = _interopRequireDefault(_generatedFoneroXdr_generated);
 
 	var _lodashIsUndefined = __webpack_require__(186);
 
@@ -24947,13 +24947,13 @@ var StellarBase =
 	    throw new TypeError('price argument is required');
 	  }
 	  attributes.price = this._toXDRPrice(opts.price);
-	  var createPassiveOfferOp = new _generatedStellarXdr_generated2['default'].CreatePassiveOfferOp(attributes);
+	  var createPassiveOfferOp = new _generatedFoneroXdr_generated2['default'].CreatePassiveOfferOp(attributes);
 
 	  var opAttributes = {};
-	  opAttributes.body = _generatedStellarXdr_generated2['default'].OperationBody.createPassiveOffer(createPassiveOfferOp);
+	  opAttributes.body = _generatedFoneroXdr_generated2['default'].OperationBody.createPassiveOffer(createPassiveOfferOp);
 	  this.setSourceAccount(opAttributes, opts);
 
-	  return new _generatedStellarXdr_generated2['default'].Operation(opAttributes);
+	  return new _generatedFoneroXdr_generated2['default'].Operation(opAttributes);
 	};
 	exports.createPassiveOffer = createPassiveOffer;
 
@@ -24969,9 +24969,9 @@ var StellarBase =
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
 
-	var _generatedStellarXdr_generated = __webpack_require__(2);
+	var _generatedFoneroXdr_generated = __webpack_require__(2);
 
-	var _generatedStellarXdr_generated2 = _interopRequireDefault(_generatedStellarXdr_generated);
+	var _generatedFoneroXdr_generated2 = _interopRequireDefault(_generatedFoneroXdr_generated);
 
 	/**
 	  * This operation generates the inflation.
@@ -24985,9 +24985,9 @@ var StellarBase =
 	  var opts = arguments.length <= 0 || arguments[0] === undefined ? {} : arguments[0];
 
 	  var opAttributes = {};
-	  opAttributes.body = _generatedStellarXdr_generated2["default"].OperationBody.inflation();
+	  opAttributes.body = _generatedFoneroXdr_generated2["default"].OperationBody.inflation();
 	  this.setSourceAccount(opAttributes, opts);
-	  return new _generatedStellarXdr_generated2["default"].Operation(opAttributes);
+	  return new _generatedFoneroXdr_generated2["default"].Operation(opAttributes);
 	};
 	exports.inflation = inflation;
 
@@ -25003,9 +25003,9 @@ var StellarBase =
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
 
-	var _generatedStellarXdr_generated = __webpack_require__(2);
+	var _generatedFoneroXdr_generated = __webpack_require__(2);
 
-	var _generatedStellarXdr_generated2 = _interopRequireDefault(_generatedStellarXdr_generated);
+	var _generatedFoneroXdr_generated2 = _interopRequireDefault(_generatedFoneroXdr_generated);
 
 	var _lodashIsString = __webpack_require__(171);
 
@@ -25043,13 +25043,13 @@ var StellarBase =
 	    throw new Error("value cannot be longer that 64 bytes");
 	  }
 
-	  var manageDataOp = new _generatedStellarXdr_generated2["default"].ManageDataOp(attributes);
+	  var manageDataOp = new _generatedFoneroXdr_generated2["default"].ManageDataOp(attributes);
 
 	  var opAttributes = {};
-	  opAttributes.body = _generatedStellarXdr_generated2["default"].OperationBody.manageDatum(manageDataOp);
+	  opAttributes.body = _generatedFoneroXdr_generated2["default"].OperationBody.manageDatum(manageDataOp);
 	  this.setSourceAccount(opAttributes, opts);
 
-	  return new _generatedStellarXdr_generated2["default"].Operation(opAttributes);
+	  return new _generatedFoneroXdr_generated2["default"].Operation(opAttributes);
 	};
 	exports.manageData = manageData;
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(15).Buffer))
@@ -25066,9 +25066,9 @@ var StellarBase =
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
 
-	var _generatedStellarXdr_generated = __webpack_require__(2);
+	var _generatedFoneroXdr_generated = __webpack_require__(2);
 
-	var _generatedStellarXdr_generated2 = _interopRequireDefault(_generatedStellarXdr_generated);
+	var _generatedFoneroXdr_generated2 = _interopRequireDefault(_generatedFoneroXdr_generated);
 
 	var _lodashIsUndefined = __webpack_require__(186);
 
@@ -25112,13 +25112,13 @@ var StellarBase =
 	    opts.offerId = '0';
 	  }
 	  attributes.offerId = _jsXdr.UnsignedHyper.fromString(opts.offerId);
-	  var manageOfferOp = new _generatedStellarXdr_generated2["default"].ManageOfferOp(attributes);
+	  var manageOfferOp = new _generatedFoneroXdr_generated2["default"].ManageOfferOp(attributes);
 
 	  var opAttributes = {};
-	  opAttributes.body = _generatedStellarXdr_generated2["default"].OperationBody.manageOffer(manageOfferOp);
+	  opAttributes.body = _generatedFoneroXdr_generated2["default"].OperationBody.manageOffer(manageOfferOp);
 	  this.setSourceAccount(opAttributes, opts);
 
-	  return new _generatedStellarXdr_generated2["default"].Operation(opAttributes);
+	  return new _generatedFoneroXdr_generated2["default"].Operation(opAttributes);
 	};
 	exports.manageOffer = manageOffer;
 
@@ -25134,9 +25134,9 @@ var StellarBase =
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
 
-	var _generatedStellarXdr_generated = __webpack_require__(2);
+	var _generatedFoneroXdr_generated = __webpack_require__(2);
 
-	var _generatedStellarXdr_generated2 = _interopRequireDefault(_generatedStellarXdr_generated);
+	var _generatedFoneroXdr_generated2 = _interopRequireDefault(_generatedFoneroXdr_generated);
 
 	var _keypair = __webpack_require__(220);
 
@@ -25144,7 +25144,7 @@ var StellarBase =
 
 	/**
 	 * Returns a XDR PaymentOp. A "payment" operation send the specified amount to the
-	 * destination account, optionally through a path. XLM payments create the destination
+	 * destination account, optionally through a path. FNO payments create the destination
 	 * account if it does not exist.
 	 * @function
 	 * @alias Operation.pathPayment
@@ -25184,13 +25184,13 @@ var StellarBase =
 	    return x.toXDRObject();
 	  });
 
-	  var payment = new _generatedStellarXdr_generated2["default"].PathPaymentOp(attributes);
+	  var payment = new _generatedFoneroXdr_generated2["default"].PathPaymentOp(attributes);
 
 	  var opAttributes = {};
-	  opAttributes.body = _generatedStellarXdr_generated2["default"].OperationBody.pathPayment(payment);
+	  opAttributes.body = _generatedFoneroXdr_generated2["default"].OperationBody.pathPayment(payment);
 	  this.setSourceAccount(opAttributes, opts);
 
-	  return new _generatedStellarXdr_generated2["default"].Operation(opAttributes);
+	  return new _generatedFoneroXdr_generated2["default"].Operation(opAttributes);
 	};
 	exports.pathPayment = pathPayment;
 
@@ -25206,9 +25206,9 @@ var StellarBase =
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
 
-	var _generatedStellarXdr_generated = __webpack_require__(2);
+	var _generatedFoneroXdr_generated = __webpack_require__(2);
 
-	var _generatedStellarXdr_generated2 = _interopRequireDefault(_generatedStellarXdr_generated);
+	var _generatedFoneroXdr_generated2 = _interopRequireDefault(_generatedFoneroXdr_generated);
 
 	var _keypair = __webpack_require__(220);
 
@@ -25240,13 +25240,13 @@ var StellarBase =
 	  attributes.destination = _keypair.Keypair.fromPublicKey(opts.destination).xdrAccountId();
 	  attributes.asset = opts.asset.toXDRObject();
 	  attributes.amount = this._toXDRAmount(opts.amount);
-	  var payment = new _generatedStellarXdr_generated2["default"].PaymentOp(attributes);
+	  var payment = new _generatedFoneroXdr_generated2["default"].PaymentOp(attributes);
 
 	  var opAttributes = {};
-	  opAttributes.body = _generatedStellarXdr_generated2["default"].OperationBody.payment(payment);
+	  opAttributes.body = _generatedFoneroXdr_generated2["default"].OperationBody.payment(payment);
 	  this.setSourceAccount(opAttributes, opts);
 
-	  return new _generatedStellarXdr_generated2["default"].Operation(opAttributes);
+	  return new _generatedFoneroXdr_generated2["default"].Operation(opAttributes);
 	};
 	exports.payment = payment;
 
@@ -25262,9 +25262,9 @@ var StellarBase =
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
 
-	var _generatedStellarXdr_generated = __webpack_require__(2);
+	var _generatedFoneroXdr_generated = __webpack_require__(2);
 
-	var _generatedStellarXdr_generated2 = _interopRequireDefault(_generatedStellarXdr_generated);
+	var _generatedFoneroXdr_generated2 = _interopRequireDefault(_generatedFoneroXdr_generated);
 
 	var _keypair = __webpack_require__(220);
 
@@ -25306,7 +25306,7 @@ var StellarBase =
 	 * @param {string} [opts.homeDomain] - sets the home domain used for reverse federation lookup.
 	 * @param {string} [opts.source] - The source account (defaults to transaction source).
 	 * @returns {xdr.SetOptionsOp}
-	 * @see [Account flags](https://www.stellar.org/developers/guides/concepts/accounts.html#flags)
+	 * @see [Account flags](https://www.fonero.org/developers/guides/concepts/accounts.html#flags)
 	 */
 	var setOptions = function setOptions(opts) {
 	  var attributes = {};
@@ -25349,7 +25349,7 @@ var StellarBase =
 	        throw new Error("signer.ed25519PublicKey is invalid.");
 	      }
 	      var rawKey = _strkey.StrKey.decodeEd25519PublicKey(opts.signer.ed25519PublicKey);
-	      key = new _generatedStellarXdr_generated2["default"].SignerKey.signerKeyTypeEd25519(rawKey);
+	      key = new _generatedFoneroXdr_generated2["default"].SignerKey.signerKeyTypeEd25519(rawKey);
 	      setValues++;
 	    }
 
@@ -25361,7 +25361,7 @@ var StellarBase =
 	      if (!(Buffer.isBuffer(opts.signer.preAuthTx) && opts.signer.preAuthTx.length == 32)) {
 	        throw new Error("signer.preAuthTx must be 32 bytes Buffer.");
 	      }
-	      key = new _generatedStellarXdr_generated2["default"].SignerKey.signerKeyTypePreAuthTx(opts.signer.preAuthTx);
+	      key = new _generatedFoneroXdr_generated2["default"].SignerKey.signerKeyTypePreAuthTx(opts.signer.preAuthTx);
 	      setValues++;
 	    }
 
@@ -25373,7 +25373,7 @@ var StellarBase =
 	      if (!(Buffer.isBuffer(opts.signer.sha256Hash) && opts.signer.sha256Hash.length == 32)) {
 	        throw new Error("signer.sha256Hash must be 32 bytes Buffer.");
 	      }
-	      key = new _generatedStellarXdr_generated2["default"].SignerKey.signerKeyTypeHashX(opts.signer.sha256Hash);
+	      key = new _generatedFoneroXdr_generated2["default"].SignerKey.signerKeyTypeHashX(opts.signer.sha256Hash);
 	      setValues++;
 	    }
 
@@ -25381,16 +25381,16 @@ var StellarBase =
 	      throw new Error("Signer object must contain exactly one of signer.ed25519PublicKey, signer.sha256Hash, signer.preAuthTx.");
 	    }
 
-	    attributes.signer = new _generatedStellarXdr_generated2["default"].Signer({ key: key, weight: weight });
+	    attributes.signer = new _generatedFoneroXdr_generated2["default"].Signer({ key: key, weight: weight });
 	  }
 
-	  var setOptionsOp = new _generatedStellarXdr_generated2["default"].SetOptionsOp(attributes);
+	  var setOptionsOp = new _generatedFoneroXdr_generated2["default"].SetOptionsOp(attributes);
 
 	  var opAttributes = {};
-	  opAttributes.body = _generatedStellarXdr_generated2["default"].OperationBody.setOption(setOptionsOp);
+	  opAttributes.body = _generatedFoneroXdr_generated2["default"].OperationBody.setOption(setOptionsOp);
 	  this.setSourceAccount(opAttributes, opts);
 
-	  return new _generatedStellarXdr_generated2["default"].Operation(opAttributes);
+	  return new _generatedFoneroXdr_generated2["default"].Operation(opAttributes);
 	};
 	exports.setOptions = setOptions;
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(15).Buffer))
@@ -25411,9 +25411,9 @@ var StellarBase =
 
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
-	var _generatedStellarXdr_generated = __webpack_require__(2);
+	var _generatedFoneroXdr_generated = __webpack_require__(2);
 
-	var _generatedStellarXdr_generated2 = _interopRequireDefault(_generatedStellarXdr_generated);
+	var _generatedFoneroXdr_generated2 = _interopRequireDefault(_generatedFoneroXdr_generated);
 
 	var _lodashIsUndefined = __webpack_require__(186);
 
@@ -25468,7 +25468,7 @@ var StellarBase =
 	 *
 	 * @param {string} type - `MemoNone`, `MemoID`, `MemoText`, `MemoHash` or `MemoReturn`
 	 * @param {*} value - `string` for `MemoID`, `MemoText`, buffer of hex string for `MemoHash` or `MemoReturn`
-	 * @see [Transactions concept](https://www.stellar.org/developers/learn/concepts/transactions.html)
+	 * @see [Transactions concept](https://www.fonero.org/developers/learn/concepts/transactions.html)
 	 * @class Memo
 	 */
 
@@ -25517,15 +25517,15 @@ var StellarBase =
 	    value: function toXDRObject() {
 	      switch (this._type) {
 	        case MemoNone:
-	          return _generatedStellarXdr_generated2["default"].Memo.memoNone();
+	          return _generatedFoneroXdr_generated2["default"].Memo.memoNone();
 	        case MemoID:
-	          return _generatedStellarXdr_generated2["default"].Memo.memoId(_jsXdr.UnsignedHyper.fromString(this._value));
+	          return _generatedFoneroXdr_generated2["default"].Memo.memoId(_jsXdr.UnsignedHyper.fromString(this._value));
 	        case MemoText:
-	          return _generatedStellarXdr_generated2["default"].Memo.memoText(this._value);
+	          return _generatedFoneroXdr_generated2["default"].Memo.memoText(this._value);
 	        case MemoHash:
-	          return _generatedStellarXdr_generated2["default"].Memo.memoHash(this._value);
+	          return _generatedFoneroXdr_generated2["default"].Memo.memoHash(this._value);
 	        case MemoReturn:
-	          return _generatedStellarXdr_generated2["default"].Memo.memoReturn(this._value);
+	          return _generatedFoneroXdr_generated2["default"].Memo.memoReturn(this._value);
 	      }
 	    }
 
@@ -25598,7 +25598,7 @@ var StellarBase =
 	  }, {
 	    key: "_validateTextValue",
 	    value: function _validateTextValue(value) {
-	      if (!_generatedStellarXdr_generated2["default"].Memo.armTypeForArm('text').isValid(value)) {
+	      if (!_generatedFoneroXdr_generated2["default"].Memo.armTypeForArm('text').isValid(value)) {
 	        throw new Error("Expects string, array or buffer, max 28 bytes");
 	      }
 	    }
@@ -31519,9 +31519,9 @@ var StellarBase =
 
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
-	var _generatedStellarXdr_generated = __webpack_require__(2);
+	var _generatedFoneroXdr_generated = __webpack_require__(2);
 
-	var _generatedStellarXdr_generated2 = _interopRequireDefault(_generatedStellarXdr_generated);
+	var _generatedFoneroXdr_generated2 = _interopRequireDefault(_generatedFoneroXdr_generated);
 
 	var _jsXdr = __webpack_require__(3);
 
@@ -31585,7 +31585,7 @@ var StellarBase =
 	        destination: destinationB,
 	        amount: "100"
 	        asset: Asset.native()
-	    }) // <- sends 100 XLM to destinationB
+	    }) // <- sends 100 FNO to destinationB
 	 *   .build();
 	 *
 	 * transaction.sign(sourceKeypair);
@@ -31657,21 +31657,21 @@ var StellarBase =
 	      var attrs = {
 	        sourceAccount: _keypair.Keypair.fromPublicKey(this.source.accountId()).xdrAccountId(),
 	        fee: this.baseFee * this.operations.length,
-	        seqNum: _generatedStellarXdr_generated2["default"].SequenceNumber.fromString(sequenceNumber.toString()),
+	        seqNum: _generatedFoneroXdr_generated2["default"].SequenceNumber.fromString(sequenceNumber.toString()),
 	        memo: this.memo ? this.memo.toXDRObject() : null,
-	        ext: new _generatedStellarXdr_generated2["default"].TransactionExt(0)
+	        ext: new _generatedFoneroXdr_generated2["default"].TransactionExt(0)
 	      };
 
 	      if (this.timebounds) {
 	        this.timebounds.minTime = _jsXdr.UnsignedHyper.fromString(this.timebounds.minTime.toString());
 	        this.timebounds.maxTime = _jsXdr.UnsignedHyper.fromString(this.timebounds.maxTime.toString());
-	        attrs.timeBounds = new _generatedStellarXdr_generated2["default"].TimeBounds(this.timebounds);
+	        attrs.timeBounds = new _generatedFoneroXdr_generated2["default"].TimeBounds(this.timebounds);
 	      }
 
-	      var xtx = new _generatedStellarXdr_generated2["default"].Transaction(attrs);
+	      var xtx = new _generatedFoneroXdr_generated2["default"].Transaction(attrs);
 	      xtx.operations(this.operations);
 
-	      var xenv = new _generatedStellarXdr_generated2["default"].TransactionEnvelope({ tx: xtx });
+	      var xenv = new _generatedFoneroXdr_generated2["default"].TransactionEnvelope({ tx: xtx });
 	      var tx = new _transaction.Transaction(xenv);
 
 	      this.source.incrementSequenceNumber();
@@ -31716,10 +31716,10 @@ var StellarBase =
 	/**
 	 * Create a new Account object.
 	 *
-	 * `Account` represents a single account in Stellar network and its sequence number.
+	 * `Account` represents a single account in Fonero network and its sequence number.
 	 * Account tracks the sequence number as it is used by {@link TransactionBuilder}.
-	 * See [Accounts](https://stellar.org/developers/learn/concepts/accounts.html) for more information about how
-	 * accounts work in Stellar.
+	 * See [Accounts](https://fonero.org/developers/learn/concepts/accounts.html) for more information about how
+	 * accounts work in Fonero.
 	 * @constructor
 	 * @param {string} accountId ID of the account (ex. `GB3KJPLFUYN5VL6R3GU3EGCGVCKFDSD7BEDX42HWG5BWFKB3KQGJJRMA`)
 	 * @param {string} sequence current sequence number of the account
@@ -31740,7 +31740,7 @@ var StellarBase =
 	  }
 
 	  /**
-	   * Returns Stellar account ID, ex. `GB3KJPLFUYN5VL6R3GU3EGCGVCKFDSD7BEDX42HWG5BWFKB3KQGJJRMA`
+	   * Returns Fonero account ID, ex. `GB3KJPLFUYN5VL6R3GU3EGCGVCKFDSD7BEDX42HWG5BWFKB3KQGJJRMA`
 	   * @returns {string}
 	   */
 

@@ -1,13 +1,13 @@
 {
-  "name": "stellar-base",
-  "homepage": "https://github.com/stellar/bower-js-stellar-base",
+  "name": "fonero-base",
+  "homepage": "https://github.com/fonero-project/bower-js-fonero-base",
   "authors": [
-    "Stellar Development Foundation"
+    "Fonero Development Foundation"
   ],
-  "description": "Low level stellar support library",
-  "main": "./stellar-base.min.js",
+  "description": "Low level fonero support library",
+  "main": "./fonero-base.min.js",
   "keywords": [
-    "stellar"
+    "fonero"
   ],
   "license": "Apache 2.0"
 }
